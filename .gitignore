@@ -2,7 +2,6 @@
 /env
 
 # dependencies
-/frontend/
 /frontend/node_modules
 
 
