@@ -1,5 +1,7 @@
-
-/env
+/backend/instance
+/backend/venv
+/backend/incidents.db
+/backend/users.db
 
 # dependencies
 /frontend/node_modules

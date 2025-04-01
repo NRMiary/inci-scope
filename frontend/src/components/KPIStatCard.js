@@ -1,4 +1,3 @@
-// src/components/KPIStatCard.js
 import React from 'react';
 
 const KPIStatCard = ({ title, value, iconClass, borderClass, textClass }) => {
