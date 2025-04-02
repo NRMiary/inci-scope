@@ -22,7 +22,7 @@ const Sidebar = () => {
       <li className="nav-item active">
         <Link className="nav-link" to="/dashboard">
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span>
+          <span>Tableau de bord</span>
         </Link>
       </li>
 
@@ -30,7 +30,7 @@ const Sidebar = () => {
       <li className="nav-item active">
         <Link className="nav-link" to="/incidents">
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>Liste incidents</span>
+          <span>Liste incidents ouverts</span>
         </Link>
       </li>
 

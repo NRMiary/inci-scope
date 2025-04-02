@@ -62,7 +62,7 @@ const Dashboard = () => {
     labels: Object.keys(kpis.criticite_counts),
     datasets: [
       {
-        label: 'Incidents by Criticality',
+        label: 'Incidents par criticité',
         data: Object.values(kpis.criticite_counts),
         backgroundColor: 'rgba(75,192,192,0.6)',
       },
@@ -78,7 +78,7 @@ const Dashboard = () => {
     labels: labels,
     datasets: [
       {
-        label: "Number of Incidents",
+        label: "Nombre des incidents",
         data: monthlyCounts,
         fill: false,
         borderColor: 'rgba(75,192,192,1)',
@@ -95,32 +95,32 @@ const Dashboard = () => {
   return (
     <div>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">IT Incident Tracking</h1>
+        <h1 className="h3 mb-0 text-gray-800">Suivi des incidents IT</h1>
       </div>
       <div className="row">
         <KPIStatCard
-          title="Total Incidents"
+          title="Total incidents"
           value={kpis.total_incidents}
           iconClass="fa-bug"
           borderClass="primary"
           textClass="primary"
         />
         <KPIStatCard
-          title="Closed Incidents"
+          title="Incidents cloturés"
           value={kpis.closed_incidents}
           iconClass="fa-check-circle"
           borderClass="success"
           textClass="success"
         />
         <KPIStatCard
-          title="Average Resolution Time (days)"
+          title="Temps de résolution moyen (jours)"
           value={kpis.avg_resolution.toFixed(2)}
           iconClass="fa-clock"
           borderClass="info"
           textClass="info"
         />
         <KPIStatCard
-          title="Open/In Progress Incidents"
+          title="Incidents ouverts/en cours"
           value={kpis.open_incidents}
           iconClass="fa-hourglass-half"
           borderClass="warning"
@@ -129,10 +129,10 @@ const Dashboard = () => {
       </div>
       <div className="row">
         <div className="col-xl-6 col-lg-7">
-          <IncidentChart title="Distribution by Criticality" data={areaChartData} options={areaChartOptions} />
+          <IncidentChart title="Répartition par criticité" data={areaChartData} options={areaChartOptions} />
         </div>
         <div className="col-xl-6 col-lg-7">
-          <LineChartCard title="Incident Trend Over 12 Months" data={lineChartData} options={lineChartOptions} />
+          <LineChartCard title="Nombre des incidents sur 12 mois" data={lineChartData} options={lineChartOptions} />
         </div>
       </div>
       <IncidentsTable incidents={incidents} />

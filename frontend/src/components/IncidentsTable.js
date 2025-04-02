@@ -1,37 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { IncidentsContext } from '../context/IncidentsContext';
 
-const IncidentsTable = ({ incidents }) => {
+const IncidentsTable = ({ filter = 'all' } = {}) => {
+  const { incidents } = useContext(IncidentsContext);
+
+  // If the filter is set to "open", only incidents with a missing closing date are kept.
+  const filteredIncidents =
+    filter === 'open'
+      ? incidents.filter(i => !i.date_cloture)
+      : incidents;
+
   useEffect(() => {
-    if (incidents.length > 0 && window.$) {
-      // Check if DataTables is not already initialized
-      if (!window.$.fn.DataTable.isDataTable('#dataTable')) {
-        window.$('#dataTable').DataTable({
-          pageLength: 10, // 10 rows per page
-        });
-      }
+    if (window.$ && window.$.fn.DataTable.isDataTable('#dataTable')) {
+      window.$('#dataTable').DataTable().destroy();
     }
-  }, [incidents]);
+    if (window.$) {
+      window.$('#dataTable').DataTable({
+        pageLength: 10,
+      });
+    }
+  }, [filteredIncidents]);
 
   return (
     <div className="card shadow mb-4">
       <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary">Incident List</h6>
+        <h6 className="m-0 font-weight-bold text-primary">
+          {filter === 'open' ? 'Incidents ouverts/en cours' : 'Liste des incidents'}
+        </h6>
       </div>
       <div className="card-body">
         <div className="table-responsive">
           <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
             <thead>
               <tr>
-                <th>Open Date</th>
-                <th>Close Date</th>
+                <th>Date d'ouverture</th>
+                <th>Date de clôture</th>
                 <th>Type</th>
-                <th>Criticality</th>
-                <th>Status</th>
-                <th>Responsible Team</th>
+                <th>Criticité</th>
+                <th>Statut</th>
+                <th>Équipe responsable</th>
               </tr>
             </thead>
             <tbody>
-              {incidents.map((incident) => (
+              {filteredIncidents.map(incident => (
                 <tr key={incident.id}>
                   <td>{incident.date_ouverture}</td>
                   <td>{incident.date_cloture || 'N/A'}</td>
